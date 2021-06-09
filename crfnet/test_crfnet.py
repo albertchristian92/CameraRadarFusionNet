@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY,"configs/camra_sample.cfg"))
+    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY,"configs/camra_sample.cfg"))  # args.config
     parser.add_argument('--model', type=str, default="./saved_models/camra_sample.h5")
     parser.add_argument('--st', type=float, default=None)
     parser.add_argument('--inference', default=False, action='store_true')
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     else:
         cfg = get_config(args.config)
 
-    model_name = args.config.split('/')[-1] 
+    model_name = args.config.split('/')[-1]  # Should be "camra_samples" by default
     model_name = model_name.split('.')[0]
     cfg.model_name = cfg.runtime + "_" + model_name
     if args.st:
@@ -178,7 +178,7 @@ if __name__ == '__main__':
         viz_image = generator.load_image(i)
         if not is_radar_visualization:
             viz_image = viz_image[:,:,:3]
-        viz_image = create_imagep_visualization(viz_image, cfg=cfg)
+        viz_image = create_imagep_visualization(viz_image, cfg=cfg)  # Image array data
 
         # run network
         if cfg.distance_detection:
@@ -201,5 +201,5 @@ if __name__ == '__main__':
             visualize_predictions(predictions,viz_image, generator)
 
         if args.render: cv2.imshow('Prediction', viz_image)
-        cv2.imwrite(save_path + str(i).zfill(4) + '.png', viz_image)
+        cv2.imwrite(save_path + str(i).zfill(4) + '.png', viz_image)  # Saved image location
         cv2.waitKey(1)

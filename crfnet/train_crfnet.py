@@ -188,7 +188,7 @@ def create_callbacks(model, prediction_model, validation_generator, cfg):
     callbacks.append(progbar_callback)
 
     if cfg.tensorboard:
-        tb_logdir = os.path.join(cfg.tb_logdir, cfg.model_name)
+        tb_logdir = os.path.join(cfg.tb_logdir, cfg.model_name)  # The location of Tensorboard saved file
         makedirs(tb_logdir)
         tensorboard_callback = keras.callbacks.TensorBoard(
             log_dir                = tb_logdir,
@@ -257,7 +257,7 @@ def create_callbacks(model, prediction_model, validation_generator, cfg):
 
 def main():
 
-    FILE_DIRECTORY = os.path.dirname(os.path.abspath(__file__)) 
+    FILE_DIRECTORY = os.path.dirname(os.path.abspath(__file__))  # parent folder
 
     # Parse arguments
     parser = argparse.ArgumentParser()
